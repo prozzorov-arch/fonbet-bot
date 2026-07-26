@@ -1,8 +1,11 @@
 [phases.setup]
-nixPkgs = ["python311", "python311Packages.pip"]
+nixPkgs = ["python311"]
 
 [phases.install]
-cmds = ["pip install -r requirements.txt"]
+cmds = [
+    "python -m venv .venv",
+    ". .venv/bin/activate && pip install --no-cache-dir -r requirements.txt"
+]
 
 [start]
-cmd = "python bot_analyzer.py"
+cmd = ". .venv/bin/activate && python bot_analyzer.py"
